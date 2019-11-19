@@ -70,7 +70,7 @@ void affiche_image(image img){
 }
 
 
-int main(int argc, char const *argv[]) {
+/*int main(int argc, char const *argv[]) {
     pixel foo = create_pixel(0,255,255);
     pixel pi2 = create_pixel(0,255,255);
     pixel pi3 = create_pixel(25,255,255);
@@ -81,4 +81,4 @@ int main(int argc, char const *argv[]) {
 
 
     return 0;
-}
+}*/

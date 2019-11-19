@@ -1,14 +1,43 @@
 #include<stdlib.h>
 #include<stdio.h>
+#include "image.c"
+#include "propager.c"
+void affiche(image g,int tab[]);
+void reset(image g,int tab[]);
 /*dans le traitement je retranscrit l'image dans le tableau d'int avec une meme valeur pour tout les points d'une meme tache*/
 void traitement(image g){
-	int i;
+	int i,x,y;
 	int num_tache=0;
-	int tab [image.w*image.h];
-	for(i=0;i<(image.w)*(image.h);++i){
+	int tab [g.w*g.h];
+	reset(g,tab);
+	for(i=0; i<(g.w * g.h); ++i){
 		if(tab[i]!=0){
-			propager()/*a faire*/ 
+			pixel color = g.tab[i];
+			propager(g,tab,x,y,num_tache,color);/*a faire*/ 
 		}
-		num_tache++;
 	}
+	affiche(g,tab);
+}
+
+void affiche(image g,int tab[]){
+	int x,y;
+	for(y=0;y<g.h;++y){
+		for(x=0;x<g.w;++x){
+			printf("|%d|",tab[x]);
+		}
+		printf("\n");
+	}
+}
+
+void reset(image g,int tab[]){
+	int i;
+	for(i=0;i<(g.h*g.w);++i){
+		tab[i]=0;
+	}
+}
+
+int main(){
+	image bar = create_test_image();
+	printf("image bar succes\n");
+	traitement(bar);
 }
