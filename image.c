@@ -26,6 +26,7 @@ image create_image(int w, int h){
     result.w = w;
     result.h = h;
     result.tab = malloc( w * h * sizeof(pixel));
+    assert(result.tab);
     return result;
 }
 
@@ -46,6 +47,9 @@ image create_test_image(){
     return result;
 }
 
+/*
+comparer si 2 pixels sont strictement egaux en terme de couleur;
+*/
 int comparer_pixel(pixel a, pixel b){
     return (a.R == b.R && a.G == b.G && a.B == b.B);
 }
@@ -70,9 +74,9 @@ int main(int argc, char const *argv[]) {
     pixel foo = create_pixel(0,255,255);
     pixel pi2 = create_pixel(0,255,255);
     pixel pi3 = create_pixel(25,255,255);
-    printf("%d %d\n", comparer(foo,pi2), comparer(pi2,pi3) );
+    printf("%d %d\n", comparer_pixel(foo,pi2), comparer_pixel(pi2,pi3) );
     affiche_pixel(foo);
-    image bar = create_test_image();
+//    image bar = create_test_image();
 //    affiche_image(bar);
 
 
