@@ -10,7 +10,7 @@ struct pixel{
 
 typedef struct image image;
 struct image{
-    int * pixel;
+    pixel * tab;
     int w;
     int h;
 };
