@@ -2,24 +2,28 @@
 #include<stdlib.h>
 
 /* Ordre de traitement G*/
-int propager(image g, int tab[], int x, int y, int num_tache, pixel color){
-	int i;
-	if(tab[y*g.w+x]!=0){
+int propager(image g, int tab[], int i, int num_tache, pixel color){
+	if(tab[i]!=0){
+		printf("propager ==> return\n");
 		return 0;
 	}
-	if(tab[y*g.w+x]==0 && comparer_pixel(color,g.tab[y*g.w+x])){
-			tab[x+g.w*y]=num_tache;
-			if((y-1)>=0){
-			    propager(g,tab,x,y-1,num_tache,color);
+	if(tab[i]==0 && comparer_pixel(color,g.tab[i])){
+			tab[i]=num_tache;
+			if((i+1)>=0){
+			    propager(g,tab,i+1,num_tache,color);
+			    printf("1\n");
 			}
-			if((x+1)<=g.w){
-			    propager(g,tab,x+1,y,num_tache,color);
+			if((i+w)<=g.w){
+			    propager(g,tab,i+w,num_tache,color);
+			    printf("2\n");
 			}
-			if((y+1)<=g.h){
-			    propager(g,tab,x,y+1,num_tache,color);
+			if((i-1)<=g.h){
+			    propager(g,tab,i-1,num_tache,color);
+			    printf("3\n");
 			}
-			if((x-1)>=0){
-			    propager(g,tab,x-1,y,num_tache,color);
+			if((i-w)>=0){
+			    propager(g,tab,i-w,num_tache,color);
+			    printf("4\n");
 			}
 	}
 }
