@@ -8,14 +8,17 @@ void reset(image g,int tab[]);
 /*dans le traitement je retranscrit l'image dans le tableau d'int avec une meme valeur pour tout les points d'une meme tache*/
 void traitement(image g){
 	int i=0;
-	int num_tache=0;
+	int num_tache=1;
 	int tab [g.w * g.h];
 	reset(g,tab);
 	for(i=0; i< (g.w * g.h); i++){
 		if(tab[i]==0){
+			printf("i == %d",i);
+			printf("tache == %d",num_tache);
 			pixel color = g.tab[i];	
 			propager(g,tab,i,num_tache,color);/*a faire*/ 
 			//printf("propager traitement end\n");
+			num_tache++;
 		}
 		
 	}
