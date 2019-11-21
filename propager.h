@@ -2,4 +2,4 @@
 
 void affiche_tab(image g,int tab[]);
 void affiche_tab(image g,int tab[]);
-void propager(image g, int tab[], int i, int num_tache, pixel color);
+int propager(image g, int tab[], int i, int num_tache, pixel color);
