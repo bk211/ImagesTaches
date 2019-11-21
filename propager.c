@@ -21,6 +21,7 @@ int propager(image g, int tab[], int i, int num_tache, pixel color){
 	}
 	return 0;
 }
+<<<<<<< HEAD
 
 /*
 affiche le tableau de traitement
@@ -34,3 +35,5 @@ void affiche_tab(image g,int tab[]){
 		printf("\n");
 	}
 }
+=======
+>>>>>>> c9d6439dd1e21e8f3e4f0c3a59b2a4cd359252fd
