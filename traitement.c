@@ -9,7 +9,7 @@ void traitement(image g){
 	for(i=0; i< (g.w * g.h); i++){
 		pixel color = g.tab[i];
 		if(tab[i]==0){
-			//printf("i==%d\ntache==%d\n",i,num_tache);
+			printf("tab[%d]==%d\ntache==%d\n", i,tab[i],num_tache);
 			propager(g,tab,i,num_tache,color);/*a faire*/
 			num_tache++;
 		}
