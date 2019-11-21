@@ -5,19 +5,19 @@ void traitement(image g){
 	int i=0;
 	int num_tache=1;
 	int tab [g.w * g.h];
-	reset(g,tab);
+	init_tab(g,tab);
 	for(i=0; i< (g.w * g.h); i++){
 		pixel color = g.tab[i];
 		if(tab[i]==0){
 			//printf("i==%d\ntache==%d\n",i,num_tache);
 			propager(g,tab,i,num_tache,color);/*a faire*/
-			num_tache++;	
+			num_tache++;
 		}
 	}
-	affiche(g,tab);
+	affiche_tab(g,tab);
 }
 
-void affiche(image g,int tab[]){
+void affiche_tab(image g,int tab[]){
 	int x,y;
 	for(y=0;y< g.h ;y++){
 		for(x=0;x< g.w;x++){
@@ -27,7 +27,7 @@ void affiche(image g,int tab[]){
 	}
 }
 
-void reset(image g,int tab[]){
+void init_tab(image g,int tab[]){
 	int i;
 	for(i=0;i<(g.h * g.w);i++){
 		tab[i]=0;
