@@ -1,6 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
-void affiche_tab(image g,int tab[]);
+#include "propager.h"
+
 /* Ordre de traitement G*/
 void propager(image g, int tab[], int i, int num_tache, pixel color){
 	if(tab[i]!=0){
