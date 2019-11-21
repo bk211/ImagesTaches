@@ -1,11 +1,10 @@
 #include "propager.h"
 
 /* Ordre de traitement G*/
-void propager(image g, int tab[], int i, int num_tache, pixel color){
+int propager(image g, int tab[], int i, int num_tache, pixel color){
 	if(tab[i]!=0){
-		affiche_tab(g,tab);
-	}
-	if(comparer_pixel(color,g.tab[i])){
+		return 0;
+	}else if(comparer_pixel(color,g.tab[i])){
 			tab[i]=num_tache;
 			if((i+1)<=g.w){
 			    propager(g,tab,i+1,num_tache,color);
@@ -24,6 +23,8 @@ void propager(image g, int tab[], int i, int num_tache, pixel color){
 			    printf("4\n");
 			}
 	}
+	affiche_tab(g,tab);
+	return 0;
 }
 
 
