@@ -6,10 +6,10 @@ int propager(image g, int tab[], int i, int num_tache, pixel color){
 		return 0;
 	}else if(comparer_pixel(color,g.tab[i])){
 			tab[i]=num_tache;
-			if((i+1)<=g.w){
+			if((i+1)<= g.w){
 			    propager(g,tab,i+1,num_tache,color);
 			}
-			if((i+g.w)<=g.h){
+			if((i+g.w)<= g.h* g.w){
 			    propager(g, tab, i+g.w, num_tache, color);
 			}
 			if((i-1)>=0){

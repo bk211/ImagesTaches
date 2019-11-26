@@ -7,12 +7,17 @@ void traitement(image g){
 	int tab [g.w * g.h];
 	init_tab(g,tab);
 	for(i=0; i< (g.w * g.h); i++){
+//	for(i=0; i< (20); i++){
 		pixel color = g.tab[i];
+		printf("Outside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 		if(tab[i]==0){
-			printf("tab[%d]==%d\ntache==%d\n", i,tab[i],num_tache);
+			printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 			propager(g,tab,i,num_tache,color);/*a faire*/
 			num_tache++;
+			printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
+
 		}
+
 	}
 	affiche_tab(g,tab);
 }
