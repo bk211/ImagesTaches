@@ -8,13 +8,13 @@ void traitement(image g){
 	init_tab(g,tab);
 	for(i=0; i< (g.w * g.h); i++){
 //	for(i=0; i< (20); i++){
-		pixel color = g.tab[i];
-		printf("Outside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
+		//printf("Outside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 		if(tab[i]==0){
-			printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
-			propager(g,tab,i,num_tache,color);/*a faire*/
+			pixel pi = build_pixel(g.tab, i);
+		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
+			propager(g,tab,i,num_tache,pi);
 			num_tache++;
-			printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
+		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 
 		}
 
@@ -37,5 +37,5 @@ void init_tab(image g,int tab[]){
 	for(i=0;i<(g.h * g.w);i++){
 		tab[i]=0;
 	}
-	printf("reset end\n");
+//	printf("init success\n");
 }
