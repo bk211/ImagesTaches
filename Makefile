@@ -14,4 +14,4 @@ traitement.o:	traitement.c image.h propager.h traitement.h
 	$(CC) $(CFLAGS) $< -c
 
 clean:
-	rm -f *.o *.out exec
+	rm -f *.o *.out *.exe exec 
