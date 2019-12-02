@@ -68,7 +68,7 @@ image create_test_image(int i){
     	        if(j < 5){
 		            modify_pixel(result.tab, i * image_w + j , 255, 255, 255);
 					if(i < 5){
-						modify_pixel(result.tab, i * image_w + j , 128, 128, 128);	
+						modify_pixel(result.tab, i * image_w + j , 128, 128, 128);
 					}
     	        }else{
     	            modify_pixel(result.tab, i * image_w + j, 1, 1, 1);
@@ -81,6 +81,7 @@ image create_test_image(int i){
 
 /*comparer si 2 couleurs sont strictement egaux en terme de couleur;*/
 int compare_pixel(pixel pi, color * tab, int pos){
+	//printf("compare pixel result %d pos :%d \n", (pi.R == tab[pos*3]) && (pi.G == tab[pos*3+1]) && (pi.B == tab[pos*3+2] ) , pos );
 	return (pi.R == tab[pos*3]) && (pi.G == tab[pos*3+1]) && (pi.B == tab[pos*3+2] );
 }
 

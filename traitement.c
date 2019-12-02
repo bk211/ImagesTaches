@@ -11,7 +11,7 @@ void traitement(image g){
 		//printf("Outside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 		if(tab[i]==0){
 			pixel pi = build_pixel(g.tab, i);
-			printf("%d %d %d\n", pi.R, pi.G, pi.B);
+		//	printf("%d %d %d\n", pi.R, pi.G, pi.B);
 		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 			propager(g,tab,i,num_tache,pi);
 			num_tache++;
