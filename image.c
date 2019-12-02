@@ -13,7 +13,7 @@ pixel build_pixel(color *tab, int pos){
 }
 
 /*
-Modifie le pixel situe au postion pos du tableau tab par les attributs RGB 
+Modifie le pixel situe au postion pos du tableau tab par les attributs RGB
 */
 void modify_pixel(color* tab,int pos, color R, color G, color B){
 	tab[pos * 3] = R;
@@ -59,7 +59,7 @@ image create_test_image(int i){
     	}
     	return result;
 	}else if(i == 2){
-	
+
     	image result = create_image(10,10);
     	int image_h = result.h;
     	int image_w = result.w;
@@ -67,6 +67,9 @@ image create_test_image(int i){
     	    for (int j = 0; j < image_w; j++) {
     	        if(j < 5){
 		            modify_pixel(result.tab, i * image_w + j , 255, 255, 255);
+					if(i < 5){
+						modify_pixel(result.tab, i * image_w + j , 128, 128, 128);	
+					}
     	        }else{
     	            modify_pixel(result.tab, i * image_w + j, 1, 1, 1);
     	        }
@@ -83,8 +86,8 @@ int compare_pixel(pixel pi, color * tab, int pos){
 
 /*comparer si 2 couleurs sont strictement egaux en terme de couleur;*/
 int compare_color(color * tab, int pos_a, int pos_b){
-    return (tab[pos_a *3] == tab[pos_b *3] 
-    	&& tab[pos_a *3+1 ] == tab[pos_b *3 +1] 
+    return (tab[pos_a *3] == tab[pos_b *3]
+    	&& tab[pos_a *3+1 ] == tab[pos_b *3 +1]
     	&& tab[pos_a *3+2 ] == tab[pos_b *3 +2]);
 }
 
@@ -101,7 +104,3 @@ void affiche_image(image img){
         printf("\n");
     }
 }
-
-
-
-
