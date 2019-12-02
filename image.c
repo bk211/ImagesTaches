@@ -43,20 +43,37 @@ image create_image(int w, int h){
 /*
 Retourne une image pour les besoins de test
 */
-image create_test_image(){
-    image result = create_image(10,10);
-    int image_h = result.h;
-    int image_w = result.w;
-    for (int i = 0; i < image_h; i++) {
-        for (int j = 0; j < image_w; j++) {
-            if(j < 5){
-	            modify_pixel(result.tab, i * image_w + j , 255, 255, 255);
-            }else{
-                modify_pixel(result.tab, i * image_w + j, 1, 1, 1);
-            }
-        }
-    }
-    return result;
+image create_test_image(int i){
+	if(i == 1){
+    	image result = create_image(10,10);
+    	int image_h = result.h;
+    	int image_w = result.w;
+    	for (int i = 0; i < image_h; i++) {
+    	    for (int j = 0; j < image_w; j++) {
+    	        if(j < 5){
+		            modify_pixel(result.tab, i * image_w + j , 255, 255, 255);
+    	        }else{
+    	            modify_pixel(result.tab, i * image_w + j, 1, 1, 1);
+    	        }
+    	    }
+    	}
+    	return result;
+	}else if(i == 2){
+	
+    	image result = create_image(10,10);
+    	int image_h = result.h;
+    	int image_w = result.w;
+    	for (int i = 0; i < image_h; i++) {
+    	    for (int j = 0; j < image_w; j++) {
+    	        if(j < 5){
+		            modify_pixel(result.tab, i * image_w + j , 255, 255, 255);
+    	        }else{
+    	            modify_pixel(result.tab, i * image_w + j, 1, 1, 1);
+    	        }
+    	    }
+    	}
+    	return result;
+	}
 }
 
 /*comparer si 2 couleurs sont strictement egaux en terme de couleur;*/
@@ -84,5 +101,7 @@ void affiche_image(image img){
         printf("\n");
     }
 }
+
+
 
 
