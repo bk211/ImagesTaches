@@ -6,8 +6,8 @@ void traitement(image g){
 	int num_tache=1;
 	int tab [g.w * g.h];
 	init_tab(g,tab);
-//	for(i=0; i< (g.w * g.h); i++){
-	for(i=0; i< (1); i++){
+	for(i=0; i< (g.w * g.h); i++){
+//	for(i=0; i< (1); i++){
 		//printf("Outside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 		if(tab[i]==0){
 			pixel pi = build_pixel(g.tab, i);
@@ -30,7 +30,7 @@ void affiche_tab(image g,int tab[]){
 	int x,y;
 	for(y=0;y< g.h ;y++){
 		for(x=0;x< g.w;x++){
-			printf("|%d",tab[x]);
+			printf("|%d",tab[y*g.w +x]);
 		}
 		printf("\n");
 	}
