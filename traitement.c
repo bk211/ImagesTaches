@@ -21,8 +21,9 @@ void traitement(image g){
 
 	}
 	affiche_tab(g,tab);
-	//int * borders = mark_border(g, tab, num_tache);
-	//affiche_tab(g,borders);
+	printf("==========\n");
+	int * borders = mark_border(g, tab, num_tache);
+	affiche_tab(g,borders);
 
 }
 
@@ -30,7 +31,7 @@ void affiche_tab(image g,int tab[]){
 	int x,y;
 	for(y=0;y< g.h ;y++){
 		for(x=0;x< g.w;x++){
-			printf("|%d",tab[y*g.w +x]);
+			printf("|%2d",tab[y*g.w +x]);
 		}
 		printf("\n");
 	}
@@ -55,6 +56,7 @@ int* mark_border(image g, int tab[], int nb_tache){
 	{
 		if(is_border(tab, g.w, g.h, i)){
 			borders[i] = -1;
+		//	printf("find -1 at %d\n",i );
 		}
 	}
 
@@ -63,17 +65,24 @@ int* mark_border(image g, int tab[], int nb_tache){
 
 int is_border(int tab[], int w, int h, int i){
 	int result = 0;
-	if((i+1)< w){//droite
-		result |= (tab[i] != tab[i+1]);
-	}
-	if((i+w)<= h* w){ //bas
-		result |= (tab[i] != tab[i+w]);
-	}
-	if((i-1)>=0){//gauche
+	//printf("testing %d\n",i );
+	if((i%w -1)>=0){//gauche
+	//	printf("g\n");
 		result |= (tab[i] != tab[i-1]);
 	}
+
 	if((i-w)>=0){//haut
+	//	printf("h\n");
+
 		result |= (tab[i] != tab[i-w]);
+	}
+	if((i%w +1)< w){//droite
+//		printf("d\n");
+		result |= (tab[i] != tab[i+1]);
+	}
+	if((i+w)< h* w){ //bas
+//		printf("b\n");
+		result |= (tab[i] != tab[i+w]);
 	}
 	return result;
 }
