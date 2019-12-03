@@ -1,7 +1,7 @@
 #include "traitement.h"
 
 /*dans le traitement je retranscrit l'image dans le tableau d'int avec une meme valeur pour tout les points d'une meme tache*/
-void traitement(image g){
+image traitement(image g){
 	int i;
 	int num_tache=1;
 	int tab [g.w * g.h];
@@ -25,6 +25,12 @@ void traitement(image g){
 	int * borders = mark_border(g, tab, num_tache);
 	affiche_tab(g,borders);
 
+	image result = cpy_image(g);
+
+
+	//TODO apply_traitement(g, tab, option);
+
+	return result;
 }
 
 void affiche_tab(image g,int tab[]){
@@ -70,10 +76,8 @@ int is_border(int tab[], int w, int h, int i){
 	//	printf("g\n");
 		result |= (tab[i] != tab[i-1]);
 	}
-
 	if((i-w)>=0){//haut
 	//	printf("h\n");
-
 		result |= (tab[i] != tab[i-w]);
 	}
 	if((i%w +1)< w){//droite

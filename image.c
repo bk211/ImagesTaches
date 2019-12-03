@@ -41,6 +41,20 @@ image create_image(int w, int h){
 }
 
 /*
+	cree une copie de l'image src et l'a renvoie 
+*/
+image cpy_image(image src){
+	image dst = create_image(src.w, src.h);
+	for (int i = 0; i < src.w*src.h*3 ; ++i)
+	{
+		dst.tab[i] = src.tab[i];
+	}
+	return dst;
+
+}
+
+
+/*
 Retourne une image pour les besoins de test
 */
 image create_test_image(int i){

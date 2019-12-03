@@ -34,3 +34,4 @@ image create_test_image(int i);
 int compare_pixel(pixel pi, color * tab, int pos);
 int compare_color(color * tab, int pos_a, int pos_b);
 void affiche_image(image img);
+image cpy_image(image src);
