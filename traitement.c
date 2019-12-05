@@ -26,9 +26,10 @@ image traitement(image g){
 	affiche_tab(g,borders);
 
 	image result = cpy_image(g);
+	
 
 
-	//TODO apply_traitement(g, tab, option);
+	//TODO apply_borders(g, tab, option);
 
 	return result;
 }
@@ -89,4 +90,11 @@ int is_border(int tab[], int w, int h, int i){
 		result |= (tab[i] != tab[i+w]);
 	}
 	return result;
+}
+
+/*
+	applique la pixel de couleur color a toutes les bordures sur l'image dst
+*/
+void apply_borders(image * dst, int* borders, pixel color){
+
 }

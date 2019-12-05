@@ -1,5 +1,4 @@
 #include "propager.h"
-#define STRICT 0
 
 void init_tab(image g,int tab[]);
 image traitement(image g);

@@ -7,7 +7,7 @@ int propager(image g, int tab[], int i, int num_tache, pixel p){
 	if(tab[i]!=0){
 		//printf("reject i=%d\n",i );
 		return 0;
-	}else if(compare_pixel(p, g.tab, i)){
+	}else if(compare_pixel(p, g.tab, i, STRICT)){
 			//printf("match %d \n",i );
 			tab[i]=num_tache;
 

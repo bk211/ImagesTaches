@@ -89,14 +89,29 @@ image create_test_image(int i){
     	        }
     	    }
     	}
+		
+		modify_pixel(result.tab, 0, 120, 120, 120);
+    	
     	return result;
+
+	}else{
+		return create_test_image(1);
 	}
 }
 
 /*comparer si 2 couleurs sont strictement egaux en terme de couleur;*/
-int compare_pixel(pixel pi, color * tab, int pos){
-	//printf("compare pixel result %d pos :%d \n", (pi.R == tab[pos*3]) && (pi.G == tab[pos*3+1]) && (pi.B == tab[pos*3+2] ) , pos );
-	return (pi.R == tab[pos*3]) && (pi.G == tab[pos*3+1]) && (pi.B == tab[pos*3+2] );
+int compare_pixel(pixel pi, color * tab, int pos, int option){
+	if(!option){// Si option == 0 cad, comparaison strict
+		//printf("compare pixel result %d pos :%d \n", (pi.R == tab[pos*3]) && (pi.G == tab[pos*3+1]) && (pi.B == tab[pos*3+2] ) , pos );
+		return (pi.R == tab[pos*3]) && (pi.G == tab[pos*3+1]) && (pi.B == tab[pos*3+2] );
+	}else{
+		color dr, dg, db; // delta_r/g/b difference entre la pixel de couleur et la pixel pos
+		dr = abs(pi.R - tab[pos*3]);
+		dg = abs(pi.G - tab[pos*3]);
+		db = abs(pi.B - tab[pos*3]);
+		color dt = dr + dg + db; //difference totale;
+		return (dt < DIFF_TOT) && (dr < DIFF_MONO) && (dg < DIFF_MONO) && (db < DIFF_MONO);
+	}
 }
 
 /*comparer si 2 couleurs sont strictement egaux en terme de couleur;*/
