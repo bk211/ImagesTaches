@@ -18,7 +18,7 @@ CPPFLAGS = -I.
 LDFLAGS = -lm
 
 # définition des fichiers et dossiers
-PROGNAME = sample2d_03
+PROGNAME = exec
 VERSION = 1.0
 distdir = $(PROGNAME)-$(VERSION)
 HEADERS = image.h propager.h traitement.h 
