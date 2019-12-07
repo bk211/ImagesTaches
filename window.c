@@ -7,6 +7,7 @@
 #include <assert.h>
 #include <GL4D/gl4dg.h>
 #include <GL4D/gl4duw_SDL2.h>
+#include "traitement.h"
 
 static void init(void);
 static void resize(int w, int h);
@@ -22,6 +23,12 @@ static int _windowWidth = 600, _windowHeight = 600;
  *  starts the main loop.
  */
 int main(int argc, char ** argv) {
+
+	image bar = create_test_image(2);
+    affiche_image(bar);
+	printf("create image bar succes\n");
+	image foo = traitement(bar);
+	affiche_image(foo);
   if(!gl4duwCreateWindow(argc, argv, "GL4Dummies", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
 			 _windowWidth, _windowHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN))
     return 1;
