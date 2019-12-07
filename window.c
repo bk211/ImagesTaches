@@ -15,7 +15,7 @@ static void keydown(int keycode);
 static void draw(void);
 static void quit(void);
 
-/*!\brief window's width and height */
+/*!\brief window's width and height by default, but actually never used because of overwriting in main*/
 static int _windowWidth = 600, _windowHeight = 600;
 
 /*!\brief main function, creates the window, initialise OpenGL
@@ -29,6 +29,10 @@ int main(int argc, char ** argv) {
 	printf("create image bar succes\n");
 	image foo = traitement(bar);
 	affiche_image(foo);
+  _windowWidth = bar.w;
+  _windowHeight = bar.h;
+  
+
   if(!gl4duwCreateWindow(argc, argv, "ImagesTaches", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
 			 _windowWidth, _windowHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN))
     return 1;
