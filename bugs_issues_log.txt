@@ -1,0 +1,5 @@
+le programme ne traite pas les taches qui ont une seule epaisseur, cad, h = 1 ou w = 1;
+il trouveras que toute la tache est en bordure, donc va ecraser toute la tache.
+
+l'affichage est lisible par l'oeil humain qu'a partir de certaine resolution, par exemple, une image de 10*10 ouvriras un fenetre minuscule.
+Je pourrais utiliser des shaders pour rendre la taille de fenetre static, mais non.
