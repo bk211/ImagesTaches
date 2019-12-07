@@ -29,10 +29,11 @@ int main(int argc, char ** argv) {
 	printf("create image bar succes\n");
 	image foo = traitement(bar);
 	affiche_image(foo);
-  if(!gl4duwCreateWindow(argc, argv, "GL4Dummies", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
+  if(!gl4duwCreateWindow(argc, argv, "ImagesTaches", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
 			 _windowWidth, _windowHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN))
     return 1;
   init();
+  atexit(quit);
   gl4duwResizeFunc(resize);
   gl4duwKeyDownFunc(keydown);
   gl4duwDisplayFunc(draw);
