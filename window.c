@@ -6,6 +6,7 @@
  */
 #include <assert.h>
 #include <GL4D/gl4dg.h>
+#include <GL4D/gl4dp.h>
 #include <GL4D/gl4duw_SDL2.h>
 #include "traitement.h"
 
@@ -17,7 +18,8 @@ static void quit(void);
 
 /*!\brief window's width and height by default, but actually never used because of overwriting in main*/
 static int _windowWidth = 800, _windowHeight = 600;
-static image before_image;
+static image before_image, after_image;
+static GLuint _screen = 0;
 
 /*!\brief main function, creates the window, initialise OpenGL
  *  parameters and objects, sets GL4Dummies callback function and
@@ -25,7 +27,7 @@ static image before_image;
  */
 int main(int argc, char ** argv) {
   before_image = create_test_image(2);
- 	image after_image = traitement(before_image);
+ 	after_image = traitement(before_image);
   _windowWidth = before_image.w;
   _windowHeight = before_image.h;
 
@@ -44,6 +46,8 @@ int main(int argc, char ** argv) {
 /*!\brief initialise OpenGL parameters and data. */
 static void init(void) {
   /* setting OpenGL clear color (for next glClear) */
+  _screen = gl4dpInitScreen();
+  gl4dpSetScreen(_screen);
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
   resize(_windowWidth, _windowHeight);
   
@@ -75,6 +79,11 @@ static void keydown(int keycode) {
 /*!\brief 
  */
 static void draw(void) {
+
+  gl4dpSetColor(RGB(255, 0,0 ));
+  gl4dpPutPixel(_windowWidth/2 , _windowHeight/2 );
+  gl4dpUpdateScreen(NULL);
+
 }
 
 /*!\brief called at exit and delete and clean used data. */
