@@ -16,22 +16,18 @@ static void draw(void);
 static void quit(void);
 
 /*!\brief window's width and height by default, but actually never used because of overwriting in main*/
-static int _windowWidth = 600, _windowHeight = 600;
+static int _windowWidth = 800, _windowHeight = 600;
+static image before_image;
 
 /*!\brief main function, creates the window, initialise OpenGL
  *  parameters and objects, sets GL4Dummies callback function and
  *  starts the main loop.
  */
 int main(int argc, char ** argv) {
-
-	image bar = create_test_image(2);
-    affiche_image(bar);
-	printf("create image bar succes\n");
-	image foo = traitement(bar);
-	affiche_image(foo);
-  _windowWidth = bar.w;
-  _windowHeight = bar.h;
-  
+  before_image = create_test_image(2);
+ 	image after_image = traitement(before_image);
+  _windowWidth = before_image.w;
+  _windowHeight = before_image.h;
 
   if(!gl4duwCreateWindow(argc, argv, "ImagesTaches", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
 			 _windowWidth, _windowHeight, SDL_WINDOW_RESIZABLE | SDL_WINDOW_SHOWN))
@@ -50,7 +46,7 @@ static void init(void) {
   /* setting OpenGL clear color (for next glClear) */
   glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
   resize(_windowWidth, _windowHeight);
-
+  
 }
 
 /*!\brief sets the OpenGL viewport according to the window width and height.
@@ -76,7 +72,7 @@ static void keydown(int keycode) {
   }
 }
 
-/*!\brief mobile simulation and draw
+/*!\brief 
  */
 static void draw(void) {
 }

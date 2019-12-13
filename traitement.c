@@ -2,6 +2,7 @@
 
 /*dans le traitement je retranscrit l'image dans le tableau d'int avec une meme valeur pour tout les points d'une meme tache*/
 image traitement(image g){
+	//printf("in traitement");
 	int i;
 	int num_tache=1;
 	int tab [g.w * g.h];
@@ -18,12 +19,12 @@ image traitement(image g){
 		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 
 		}
-
 	}
-	affiche_tab(g,tab);
+
+//	affiche_tab(g,tab);
 	printf("==========\n");
 	int * borders = mark_border(g, tab, num_tache);
-	affiche_tab(g,borders);
+//	affiche_tab(g,borders);
 
 	image result = cpy_image(g);
 	

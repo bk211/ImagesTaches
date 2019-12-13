@@ -2,7 +2,7 @@
 
 /* Ordre de traitement G*/
 int propager(image g, int tab[], int i, int num_tache, pixel p){
-//	printf("In propager for tab[%d] = %d\n",i,tab[i]);
+	//printf("In propager for tab[%d] = %d\n",i,tab[i]);
 //	printf(">>>\n");
 	if(tab[i]!=0){
 		//printf("reject i=%d\n",i );

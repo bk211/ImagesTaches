@@ -74,14 +74,14 @@ image create_test_image(int i){
     	return result;
 	}else if(i == 2){
 
-    	image result = create_image(10,10);
+    	image result = create_image(400,400);
     	int image_h = result.h;
     	int image_w = result.w;
     	for (int i = 0; i < image_h; i++) {
     	    for (int j = 0; j < image_w; j++) {
-    	        if(j < 5){
+    	        if(j < image_w/2 ){
 		            modify_pixel(result.tab, i * image_w + j , 255, 255, 255);
-					if(i < 5){
+					if(i < image_h/2 ){
 						modify_pixel(result.tab, i * image_w + j , 128, 128, 128);
 					}
     	        }else{
