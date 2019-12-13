@@ -83,9 +83,9 @@ static void print_image(image img){
     for (int j = 0; j < img.w; j++)
     {
       GLubyte r, g, b; 
-      r = rand() % 256;
-      g = rand() % 256;
-      b = rand() % 256;
+      r = img.tab[(i*img.w+j)*3 ];
+      g = img.tab[(i*img.w+j)*3 +1];
+      b = img.tab[(i*img.w+j)*3 +2];
       gl4dpSetColor(RGB(r, g, b));
       gl4dpPutPixel(j, i);
     }
