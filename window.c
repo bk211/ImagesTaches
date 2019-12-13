@@ -76,13 +76,29 @@ static void keydown(int keycode) {
   }
 }
 
+static void print_image(image img){
+
+  for (int i = 0; i < img.h; i++)
+  {
+    for (int j = 0; j < img.w; j++)
+    {
+      GLubyte r, g, b; 
+      r = rand() % 256;
+      g = rand() % 256;
+      b = rand() % 256;
+      gl4dpSetColor(RGB(r, g, b));
+      gl4dpPutPixel(j, i);
+    }
+    
+  }
+  gl4dpUpdateScreen(NULL);
+
+}
+
 /*!\brief 
  */
 static void draw(void) {
-
-  gl4dpSetColor(RGB(255, 0,0 ));
-  gl4dpPutPixel(_windowWidth/2 , _windowHeight/2 );
-  gl4dpUpdateScreen(NULL);
+  print_image(after_image);
 
 }
 
