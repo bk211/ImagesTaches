@@ -22,7 +22,6 @@ image traitement(image g){
 	}
 
 //	affiche_tab(g,tab);
-	printf("==========\n");
 	int * borders = mark_border(g, tab, num_tache);
 //	affiche_tab(g,borders);
 
