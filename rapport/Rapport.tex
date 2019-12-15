@@ -1,7 +1,8 @@
 \documentclass[12pt, letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-
+\usepackage{listings}
+\usepackage{verbatim} 
 \title{Rapport de Projet : ImagesTaches}
 \author{Chaolei CAI \& Nawfoel Arjoune}
 
@@ -28,8 +29,8 @@ Un makefile est présent dans le répertoire de racine, pour compiler le program
 commande "make" suffit à obtenir l'exécutable "exec".\\
 Enfin, lancer le programme exec pour faire appraître la fênetre d'affichage.\\
 Par défaut l'image affiché est l'image avant le traitement, 
-pour afficher le l'image après application du traitement, enfoncer la touche "r" de votre clavier.\\
-
+pour afficher le l'image après application du traitement, pressez la touche "r" de votre clavier.\\
+Pour terminer le programme, vous pouvez pressez la touche "ECHAP", "q" ou la croix situé dans le coin supérieur droite.
 \section{Objectives et consigne du Projet}
 Il faut sur, une image, trouver automatiquement toutes les "taches de couleur".\\
 L'image est donnée comme un grand tableau avec un octet par couleur par "pixel" (trois couleurs, R, G et B).\\
@@ -43,5 +44,36 @@ Le programme devra tourner sur au moins une des machines en libre-service du Boc
 utilisation des librairies OpenGL, Glu, Glut et GL4D, seules librairies non standard autorisées.
 
 \section{Structures de données de base}
+\begin{lstlisting}
+    typedef unsigned char color;
+
+    typedef struct pixel pixel;
+    struct pixel{
+        color R;
+        color G;
+        color B;
+    };
+
+    typedef struct image image;
+    struct image{
+        color * tab;
+        int w;
+        int h;
+    };
+        
+\end{lstlisting}
+Tout d'abord, "color" est un alias que j'ai donné au type unsigned char (il occupe précisément 1 octet dans la mémoire), il a été mise en place pour 
+quantifier la couleur dans le système RGB, en effet, dans ce dernier, les valeurs que peuvent prendre
+une couleur est comprise dans l'intervalle [0;255].\\
+Par extension, on arrive à notre structure pixel, qui est constitué de 3 composants "color" RBG. \\
+Enfin, une image seras pour nous une structure composé de 3 élements:\\
+Le premier, "tab" est le tableau de couleur qu'il faudra alloué dynamiquement selon le besoin.\\
+"w" et "h" sont les variables qui indique les dimensions de l'image.\\
+J'ai choisi de prendre un tableau à simple entrée comme nous avons déja les dimensions de l'image, 
+la manipulation des indices n'est pas fondamentalement plus dur d'un tableau à 2 entrée, ce n'est qu'une 
+histoire de conversion entre les coordonnées x et y.\\
+A vrai dire, dans les première versions, il s'agit plutôt d'un pointeur vers une structure "pixel" que nous avons utilisée.
+Mais comme dans la consigne, il est dit qu'il faut utiliser une matrice de (XMAX x YMAX x 3) octets, nous sommes revenue vers le pointeur vers "color".
+
 
 \end{document}
