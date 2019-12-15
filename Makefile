@@ -71,10 +71,5 @@ distdir: $(DISTFILES)
 	$(CHMOD) 777 $(distdir)
 	$(CP) $(DISTFILES) $(distdir)
 
-doc: $(DOXYFILE)
-	cat $< | sed -e "s/PROJECT_NAME *=.*/PROJECT_NAME = $(PROGNAME)/" | sed -e "s/PROJECT_NUMBER *=.*/PROJECT_NUMBER = $(VERSION)/" >> $<.new
-	mv -f $<.new $<
-	cd documentation && doxygen && cd ..
-
 clean:
 	@$(RM) -r $(PROGNAME) $(OBJ) *~ $(distdir).tgz gmon.out core.* documentation/*~ shaders/*~ GL4D/*~ documentation/html

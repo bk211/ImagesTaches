@@ -1,6 +1,5 @@
 #include "propager.h"
 
-/* Ordre de traitement G*/
 int propager(image g, int tab[], int i, int num_tache, pixel p){
 	//printf("In propager for tab[%d] = %d\n",i,tab[i]);
 //	printf(">>>\n");
@@ -8,7 +7,6 @@ int propager(image g, int tab[], int i, int num_tache, pixel p){
 		//printf("reject i=%d\n",i );
 		return 0;
 	}else if(compare_pixel(p, g.tab, i, STRICT)){
-			//printf("match %d \n",i );
 			tab[i]=num_tache;
 
 			if((i%g.w -1) >= 0){//gauche

@@ -26,7 +26,7 @@ static GLuint _screen = 0;
  *  starts the main loop.
  */
 int main(int argc, char ** argv) {
-  before_image = create_test_image(2);
+  before_image = create_test_image(1);
  	after_image = traitement(before_image);
   _windowWidth = before_image.w;
   _windowHeight = before_image.h;

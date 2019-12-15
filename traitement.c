@@ -2,17 +2,16 @@
 
 /*dans le traitement je retranscrit l'image dans le tableau d'int avec une meme valeur pour tout les points d'une meme tache*/
 image traitement(image g){
-	//printf("in traitement");
+	//printf("in traitement"); 
 	int i;
 	int num_tache=1;
 	int tab [g.w * g.h];
 	init_tab(g,tab);
 	for(i=0; i< (g.w * g.h); i++){
-//	for(i=0; i< (1); i++){
 		//printf("Outside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 		if(tab[i]==0){
 			pixel pi = build_pixel(g.tab, i);
-		//	printf("%d %d %d\n", pi.R, pi.G, pi.B);
+			//printf("%d %d %d\n", pi.R, pi.G, pi.B);
 		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 			propager(g,tab,i,num_tache,pi);
 			num_tache++;
@@ -21,9 +20,9 @@ image traitement(image g){
 		}
 	}
 
-//	affiche_tab(g,tab);
+	affiche_tab(g,tab);
 	int * borders = mark_border(g, tab, num_tache);
-//	affiche_tab(g,borders);
+	affiche_tab(g,borders);
 
 	image result = cpy_image(g);
 	
@@ -63,7 +62,7 @@ int* mark_border(image g, int tab[], int nb_tache){
 	{
 		if(is_border(tab, g.w, g.h, i)){
 			borders[i] = -1;
-		//	printf("find -1 at %d\n",i );
+//			printf("find -1 at %d\n",i );
 		}
 	}
 

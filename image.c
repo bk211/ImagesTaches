@@ -41,7 +41,7 @@ image create_image(int w, int h){
 }
 
 /*
-	cree une copie de l'image src et l'a renvoie 
+	crée une copie de l'image src et la renvoie 
 */
 image cpy_image(image src){
 	image dst = create_image(src.w, src.h);
@@ -74,7 +74,7 @@ image create_test_image(int i){
     	return result;
 	}else if(i == 2){
 
-    	image result = create_image(400,400);
+    	image result = create_image(80,80);
     	int image_h = result.h;
     	int image_w = result.w;
     	for (int i = 0; i < image_h; i++) {
@@ -134,8 +134,8 @@ int compare_pixel(pixel pi, color * tab, int pos, int option){
 	}else{
 		color dr, dg, db; // delta_r/g/b difference entre la pixel de couleur et la pixel pos
 		dr = abs(pi.R - tab[pos*3]);
-		dg = abs(pi.G - tab[pos*3]);
-		db = abs(pi.B - tab[pos*3]);
+		dg = abs(pi.G - tab[pos*3+1]);
+		db = abs(pi.B - tab[pos*3+2]);
 		color dt = dr + dg + db; //difference totale;
 		return (dt < DIFF_TOT) && (dr < DIFF_MONO) && (dg < DIFF_MONO) && (db < DIFF_MONO);
 	}
