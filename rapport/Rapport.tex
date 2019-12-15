@@ -1,0 +1,47 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\title{Rapport de Projet : ImagesTaches}
+\author{Chaolei CAI \& Nawfoel Arjoune}
+
+\begin{document}
+
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\tableofcontents
+\section{Introduction}
+Ce document constitue notre rapport sur le projet de fin de semestre L2 pour le cours d'impérative 2 de M.Bourdin. \\
+Le projet est consultable depuis ce lien github: https://github.com/bk211/ImagesTaches\\
+
+
+\section{Dependences}
+Ce projet nécessite le support de l'API GL4Dummies de M.Belhadj, 
+par extension, vous devez avoir sur votre machine les dépendances de GL4Dummies 
+(SDL2 et OpenGL pour ne citer que les plus importants).
+
+\section{Compilation du projet}
+Un makefile est présent dans le répertoire de racine, pour compiler le programme, une simple
+commande "make" suffit à obtenir l'exécutable "exec".\\
+Enfin, lancer le programme exec pour faire appraître la fênetre d'affichage.\\
+Par défaut l'image affiché est l'image avant le traitement, 
+pour afficher le l'image après application du traitement, enfoncer la touche "r" de votre clavier.\\
+
+\section{Objectives et consigne du Projet}
+Il faut sur, une image, trouver automatiquement toutes les "taches de couleur".\\
+L'image est donnée comme un grand tableau avec un octet par couleur par "pixel" (trois couleurs, R, G et B).\\
+C'est donc une vaste matrice de (XMAX x YMAX x 3) octets. Trouver les taches consiste à trouver et numéroter les zones connexes ayant la même couleur.\\
+Une bonne méthode consisterait à commencer par trouver tous les pixels connexes ayant une certaine couleur, ils forment une tache.\\
+Puis à réitérer ce processus pour tous les pixels. On a alors toutes les taches, si elles ont été listées, il est maintenant facile de leur appliquer un traitement.\\
+Un traitement pourrait être de délimiter en noir les taches de couleur. Enfin, une tache peut être une zone dont les pixels ont à peu près la même couleur.\\
+On définira cette approximation et on fera la délimitation de ces zones comme précédemment. \\
+Le rapport contiendra des explications sur les procédures mises en oeuvre, le mode d'emploi, le listing du programme et des traces d'utilisation.\\
+Le programme devra tourner sur au moins une des machines en libre-service du Bocal et sera écrit en C, avec, si nécessaire, 
+utilisation des librairies OpenGL, Glu, Glut et GL4D, seules librairies non standard autorisées.
+
+\section{Structures de données de base}
+
+\end{document}
