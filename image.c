@@ -65,9 +65,9 @@ image create_test_image(int i){
     	for (int i = 0; i < image_h; i++) {
     	    for (int j = 0; j < image_w; j++) {
     	        if(j < 5){
-		            modify_pixel(result.tab, i * image_w + j , 255, 255, 255);
+		            modify_pixel(result.tab, i * image_w + j , 0, 255, 255);
     	        }else{
-    	            modify_pixel(result.tab, i * image_w + j, 1, 1, 1);
+    	            modify_pixel(result.tab, i * image_w + j, 255, 1, 255);
     	        }
     	    }
     	}
@@ -94,7 +94,34 @@ image create_test_image(int i){
     	
     	return result;
 
-	}else{
+	}else if(i == 3){
+
+    	image result = create_image(400,400);
+    	int image_h = result.h;
+    	int image_w = result.w;
+    	for (int i = 0; i < image_h; i++) {
+    	    for (int j = 0; j < image_w; j++) {
+    	        if(j < image_w/2 ){
+					if(i < image_h/2 ){
+						modify_pixel(result.tab, i * image_w + j , 128, 128, 128);
+					}else{
+			            modify_pixel(result.tab, i * image_w + j , 255, 0, 0);
+					}
+    	        }else{
+					if(i < image_h/2 ){
+						modify_pixel(result.tab, i * image_w + j , 0, 255, 0);
+					}else{
+    	            	modify_pixel(result.tab, i * image_w + j, 0, 0, 255);
+					}
+    	        }
+    	    }
+    	}
+		
+		modify_pixel(result.tab, 0, 120, 120, 120);
+    	
+    	return result;
+	}
+	else{
 		return create_test_image(1);
 	}
 }

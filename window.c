@@ -69,6 +69,8 @@ static void keydown(int keycode) {
     exit(0);
   case 'v':
       printf("v key pressed");
+      before_image = create_test_image(3);
+ 	    after_image = traitement(before_image);
     break;
   case 'r':
       printf("r key pressed");

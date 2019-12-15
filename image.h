@@ -15,7 +15,6 @@ struct pixel{
     color B;
 };
 
-
 typedef struct image image;
 struct image{
     color * tab;
