@@ -4,7 +4,7 @@
 \usepackage{listings}
 \usepackage{verbatim} 
 \title{Rapport de Projet : ImagesTaches}
-\author{Chaolei CAI \& Nawfoel Arjoune}
+\author{Nawfoel Ardjoune \&Chaolei CAI}
 
 \begin{document}
 
@@ -30,7 +30,8 @@ commande "make" suffit à obtenir l'exécutable "exec".\\
 Enfin, lancer le programme exec pour faire appraître la fênetre d'affichage.\\
 Par défaut l'image affiché est l'image avant le traitement, 
 pour afficher le l'image après application du traitement, pressez la touche "r" de votre clavier.\\
-Pour terminer le programme, vous pouvez pressez la touche "ECHAP", "q" ou la croix situé dans le coin supérieur droite.
+Pour terminer le programme, vous pouvez presser la touche "ECHAP", "q" ou la croix situé dans le coin supérieur droite.
+
 \section{Objectives et consigne du Projet}
 Il faut sur, une image, trouver automatiquement toutes les "taches de couleur".\\
 L'image est donnée comme un grand tableau avec un octet par couleur par "pixel" (trois couleurs, R, G et B).\\
@@ -74,6 +75,80 @@ la manipulation des indices n'est pas fondamentalement plus dur d'un tableau à 
 histoire de conversion entre les coordonnées x et y.\\
 A vrai dire, dans les première versions, il s'agit plutôt d'un pointeur vers une structure "pixel" que nous avons utilisée.
 Mais comme dans la consigne, il est dit qu'il faut utiliser une matrice de (XMAX x YMAX x 3) octets, nous sommes revenue vers le pointeur vers "color".
+
+\section{Explications sur les fonctions utilisées}
+\subsection{image.c}
+\textit{pixel build\_pixel(color \*tab, int pos)}\\
+retourne une structure pixel à partir des couleurs qui se situe 
+en position "pos" du tableau de couleur donné en paramètre.\\
+\\
+\textit{void modify\_pixel(color* tab,int pos, color R, color G, color B)}\\
+Comme son nom l'indique, il modifie les couleurs situées à la position "pos" du tableau avec les paramètres donnés.\\
+\\
+\textit{void affiche\_pixel(color * tab,int pos)}\\
+Affiche le trio de couleur situé à la position pos.
+\\\\
+\textit{image create\_image(int w, int h)}\\
+C'est la fonction d'intialisation d'image, il retourne une structure image avec la bonne dimension
+tout en allouant la mémoire qu'il faut pour le tableau. Cependant, il ne remplie pas le tableau avec une 
+valeur de défaut.
+\\\\
+\textit{image cpy\_image(image src)}\\
+Crée une copie de l'image src et la renvoie.
+\\\\
+\textit{image create\_test\_image(int i)}\\
+La fonction retourne différents images de test selon l'argument donnée en paramètre.
+\\\\
+\textit{int compare\_pixel(pixel pi, color * tab, int pos, int option)}\\
+Retourne le résultat de la comparaison entre le pixel et le trio de couleurs à la position pos.\\
+"option" correspond en réalité à un macro qui se situe dans "image.h"\\
+S'il est nul, alors la fonction fait un test strict entre les 2 couleurs.\\
+Sinon on fait alors une comparaison "soft", c'est à dire qu'on considère identique 2 pixel s'ils ont des intensité 
+de couleur proche. Il y a aussi 2 macro dédiés "DIFF\_TOT" et "DIFF\_MONO":
+"DIFF\_MONO" est la différence maximale qu'on accepte pour un seul couleur.
+"DIFF\_TOT" est la différence maximale qu'on accepte pour la totalité des couleurs, 
+\\\\
+\textit{void affiche\_image(image img)}\\
+Permet d'afficher l'image sur l'écran du terminale, le résultat est biensûr très moche, et devient 
+rapidement illisible pour de grande dimension, cependant, il a été très utile pour visualiser rapidement 
+l'image pendant la phase de developpement du projet, l'affiche via openGL n'intervient que très tardivement dans 
+notre projet.
+\\
+\subsection{propager.c}
+\textit{int propager(image g, int tab[], int i, int num\_tache, pixel p)}\\
+Dans ce fichier, il n'y a qu'une seule fonction, c'est la fonction de test pour identifier les différentes 
+taches de couleurs.\\
+Néanmoins, elle est très facile à comprendre.\\
+"tab" est un tableau constitué de "0" à l'état initial, un peu comme ce que nous avons appris dans votre cours 
+pour les arbres, les cases non traités contiennent des "0", à l'inverse, si une case n'est pas nul, 
+il contient forcément le numéro de tache qu'on lui a attribué. (il est instantié par la fonction supérieur qui appeleras propager).\\
+"i" est le numéro de case que la fonction est en train de traiter.\\
+Enfin "p" est la couleur de réference pour faire les tests de comparaison.\\
+Au départ, il faut vérifier si la case "i" est déja traité ou non, dans le cas nul, 
+il faut lancer le test de couleur pour voir si les 2 pixels(trio de couleurs et pixel par abus) sont identique.
+Si la comparaison s'avère bonne, la case "i" est marqué avec le numéro de tache donné en argument.
+Puis la fonction se propage récursivement dans les 4 cases en proximité (gauche, haut, droite et bas).
+\\
+\subsection{traitement.c}
+
+\textit{void affiche\_tab(image g,int tab[])}\\
+Cette fonction a pour but d'afficher le tableau "tab" cité dans la section précedente, c'est pour des 
+besoin de visualisation lors du developpement qu'elle a été crée.
+\\\\
+\textit{void init\_tab(image g,int tab[])}\\
+Comme son nom l'indique, la fonction initialise toutes les cases du tableau "tab" avec "0", 
+à vrai dire, il n'est pas nécessaire de donner image g en argument, nous avons juste besoin de connaitre les 
+dimensions du tableau voir même juste sa taille dans ce cas présent. Mais bon, c'est pas une fonction que 
+nous utilisons dans toutes les fonctions, elle a été crée car nous voulions segmenter au maximum les taches. \\
+Et en effet, la fonction a été utilisée au moins 2 fois, ce qui justifie amplement son utilité et d'éviter de copier-coller 2 boucle for identique.
+\\
+\textit{}\\
+\\
+\textit{}\\
+\\
+\textit{}\\
+\\
+
 
 
 \end{document}

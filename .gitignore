@@ -53,3 +53,16 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#latex files
+*.aux
+*.fdb_latexmk
+*.fls 
+*.log
+*.synctex.gz
+*.toc
+
+#specific file and dir
+test.txt
+foo.txt
+ProjetGraphique/*
