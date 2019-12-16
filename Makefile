@@ -24,10 +24,6 @@ distdir = $(PROGNAME)-$(VERSION)
 HEADERS = image.h propager.h traitement.h 
 SOURCES = window.c image.c propager.c traitement.c 
 OBJ = $(SOURCES:.c=.o)
-DOXYFILE = documentation/Doxyfile
-EXTRAFILES = COPYING  $(wildcard shaders/*.?s images/*)
-DISTFILES = $(SOURCES) Makefile $(HEADERS) $(DOXYFILE) $(EXTRAFILES)
-
 # Traitement automatique (ne pas modifier)
 ifneq (,$(shell ls -d /usr/local/include 2>/dev/null | tail -n 1))
 	CPPFLAGS += -I/usr/local/include
@@ -60,16 +56,6 @@ $(PROGNAME): $(OBJ)
 %.o: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-dist: distdir
-	$(CHMOD) -R a+r $(distdir)
-	$(TAR) zcvf $(distdir).tgz $(distdir)
-	$(RM) -r $(distdir)
-
-distdir: $(DISTFILES)
-	$(RM) -r $(distdir)
-	$(MKDIR) $(distdir)
-	$(CHMOD) 777 $(distdir)
-	$(CP) $(DISTFILES) $(distdir)
 
 clean:
 	@$(RM) -r $(PROGNAME) $(OBJ) *~ $(distdir).tgz gmon.out core.* documentation/*~ shaders/*~ GL4D/*~ documentation/html
