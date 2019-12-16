@@ -20,15 +20,14 @@ image traitement(image g){
 		}
 	} 
 
-	//affiche_tab(g,tab);
+//	affiche_tab(g,tab);
 	int * borders = mark_border(g, tab, num_tache);
-	//affiche_tab(g,borders);
+//	affiche_tab(g,borders);
 
 	image result = cpy_image(g);
 	
-	pixel couleur_bordure  = create_pixel(255, 255, 255);
+	pixel couleur_bordure  = create_pixel(0, 0, 0);
 	apply_borders(&result, borders, couleur_bordure);
-	//affiche_image(result);
 	return result;
 }
 
@@ -91,17 +90,17 @@ int is_border(int tab[], int w, int h, int i){
 }
 
 /*
-	applique la pixel de couleur color a toutes les bordures sur l'image dst
+	applique la pixel de couleur pi a toutes les bordures sur l'image dst
 */
-void apply_borders(image * dst, int* borders, pixel color){
+void apply_borders(image * dst, int* borders, pixel pi){
 	for (int i = 0; i < dst->w * dst->h ; i++)
 	{
 		if (borders[i] == -1)
 		{	
 			//printf("border find at %i\n", i);
-			dst->tab[i*3]   = color.R;
-			dst->tab[i*3+1] = color.G;
-			dst->tab[i*3+2] = color.B;
+			dst->tab[i*3]   = pi.R;
+			dst->tab[i*3+1] = pi.G;
+			dst->tab[i*3+2] = pi.B;
 		}
 	}
 	

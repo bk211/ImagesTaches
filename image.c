@@ -100,7 +100,7 @@ image create_test_image(int i){
 						modify_pixel(result.tab, i * image_w + j , 128, 128, 128);
 					}
     	        }else{
-    	            modify_pixel(result.tab, i * image_w + j, 1, 1, 1);
+    	            modify_pixel(result.tab, i * image_w + j, 255, 255, 200);
     	        }
     	    }
     	}
@@ -167,6 +167,32 @@ image create_test_image(int i){
 				}
 
     	        }
+    	    }
+    	return result;
+	}else if(i == 4){
+    	image result = create_image(default_w,default_h);
+    	int image_h = result.h;
+    	int image_w = result.w;
+    	for (int i = 0; i < image_h; i++) {
+    	    for (int j = 0; j < image_w; j++) {
+				if(j == image_w/2){
+					modify_pixel(result.tab, i * image_w + j , 128, 60, 128);
+				}
+				else{
+			        modify_pixel(result.tab, i * image_w + j , 255, 0, 0);
+				}
+				
+
+    	        }
+    	    }
+    	return result;
+	}else if(i == 5){
+    	image result = create_image(default_w,default_h);
+    	int image_h = result.h;
+    	int image_w = result.w;
+    	for (int i = 0; i < image_h; i++) {
+    	    for (int j = 0; j < image_w; j++) {
+				
     	    }
     	return result;
 	}else{
