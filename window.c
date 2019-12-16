@@ -19,7 +19,7 @@ static void quit(void);
 /*!\brief window's width and height by default, but actually never used because of overwriting in main*/
 static int _windowWidth = 800, _windowHeight = 600;
 static image before_image, after_image;
-static const int NB_IMG_TEST = 5;
+static const int NB_IMG_TEST = 6;
 static image * displayed_image;
 static GLuint _screen = 0;
 static int num_image = 0;

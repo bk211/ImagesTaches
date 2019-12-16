@@ -190,10 +190,15 @@ image create_test_image(int i){
     	image result = create_image(default_w,default_h);
     	int image_h = result.h;
     	int image_w = result.w;
+		int center_y = image_h/2;
     	for (int i = 0; i < image_h; i++) {
     	    for (int j = 0; j < image_w; j++) {
-				
+		        modify_pixel(result.tab, i * image_w + j , 255, 0, 0);
+				if(abs(i-center_y) < image_w/4){
+						modify_pixel(result.tab, i * image_w + j , 128, 60, 128);
+				}
     	    }
+		}
     	return result;
 	}else{
 		return create_test_image(0);

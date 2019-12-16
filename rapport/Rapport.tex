@@ -222,6 +222,8 @@ dans ce fichier: "before\_image" et "after\_image".\\
 \section{Bugs et limite du programme}
 Le programme est très gourmande en mémoire, dependante du capacité de votre machine, il se peut 
 que la fênetre se ferme sur un seg fault, pour ma part, je peux aller jusqu'à une résolution de 400*400.\\
+Si jamais ce problème appraît sur votre machine, allez dans image.c, puis dans la fonction 
+create\_test\_image , modifier "default\_w" et "default\_h" par une valeur plus petite.\\ 
 A cause des derniers évenements, nous n'avons pas pu tester la dernière partie concernant l'affichage du traitement 
 sur une machine du bocal, en "théorie", il ne devrait pas poser de problème car les machines du bocal dispose de l'API GL4Dummies.\\
 Enfin, une des limite du programme est qu'il ne gère pas les lignes ou verticales de fine épaisseur, 
