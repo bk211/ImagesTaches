@@ -19,15 +19,19 @@ static void quit(void);
 /*!\brief window's width and height by default, but actually never used because of overwriting in main*/
 static int _windowWidth = 800, _windowHeight = 600;
 static image before_image, after_image;
+static image displayed_image;
 static GLuint _screen = 0;
+static int num_image = 0;
 
 /*!\brief main function, creates the window, initialise OpenGL
  *  parameters and objects, sets GL4Dummies callback function and
  *  starts the main loop.
  */
 int main(int argc, char ** argv) {
-  before_image = create_test_image(1);
- 	after_image = traitement(before_image);
+  before_image = create_test_image(num_image);
+  displayed_image = before_image;
+  after_image = traitement(before_image);
+  
   _windowWidth = before_image.w;
   _windowHeight = before_image.h;
 
@@ -68,12 +72,15 @@ static void keydown(int keycode) {
   case 'q':
     exit(0);
   case 'v':
-      printf("v key pressed");
-      before_image = create_test_image(3);
- 	    after_image = traitement(before_image);
+    displayed_image = before_image;
     break;
-  case 'r':
-      printf("r key pressed");
+  case 'b':
+    displayed_image = after_image;
+    break;
+  case 'n':
+    before_image = create_test_image(++num_image%NB_IMG_TEST);
+    after_image = traitement(before_image);
+    displayed_image = before_image;
     break;
   }
 }
@@ -100,7 +107,7 @@ static void print_image(image img){
 /*!\brief 
  */
 static void draw(void) {
-  print_image(after_image);
+  print_image(displayed_image);
 
 }
 

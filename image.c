@@ -13,6 +13,19 @@ pixel build_pixel(color *tab, int pos){
 }
 
 /*
+cree une structure pixel a partir du trio de couleur donne
+*/
+pixel create_pixel(color R, color G, color B){
+	pixel result;
+	result.R = R;
+	result.G = G;
+	result.B = B;
+	return result;
+}
+
+
+
+/*
 Modifie le pixel situe au postion pos du tableau tab par les attributs RGB
 */
 void modify_pixel(color* tab,int pos, color R, color G, color B){
@@ -58,7 +71,9 @@ image cpy_image(image src){
 Retourne une image pour les besoins de test
 */
 image create_test_image(int i){
-	if(i == 1){
+	int default_w = 400;
+	int default_h = 400;
+	if(i == -1){
     	image result = create_image(10,10);
     	int image_h = result.h;
     	int image_w = result.w;
@@ -72,15 +87,15 @@ image create_test_image(int i){
     	    }
     	}
     	return result;
-	}else if(i == 2){
+	}else if(i == 0){
 
-    	image result = create_image(80,80);
+    	image result = create_image(default_w,default_h);
     	int image_h = result.h;
     	int image_w = result.w;
     	for (int i = 0; i < image_h; i++) {
     	    for (int j = 0; j < image_w; j++) {
     	        if(j < image_w/2 ){
-		            modify_pixel(result.tab, i * image_w + j , 255, 255, 255);
+		            modify_pixel(result.tab, i * image_w + j , 127, 0, 255);
 					if(i < image_h/2 ){
 						modify_pixel(result.tab, i * image_w + j , 128, 128, 128);
 					}
@@ -94,9 +109,9 @@ image create_test_image(int i){
     	
     	return result;
 
-	}else if(i == 3){
+	}else if(i == 1){
 
-    	image result = create_image(400,400);
+    	image result = create_image(default_w,default_h);
     	int image_h = result.h;
     	int image_w = result.w;
     	for (int i = 0; i < image_h; i++) {
@@ -116,13 +131,45 @@ image create_test_image(int i){
     	        }
     	    }
     	}
-		
-		modify_pixel(result.tab, 0, 120, 120, 120);
+    	
+    	return result;
+	}else if(i == 2){
+
+    	image result = create_image(default_w,default_h);
+    	int image_h = result.h;
+    	int image_w = result.w;
+    	for (int i = 0; i < image_h; i++) {
+    	    for (int j = 0; j < image_w; j++) {
+    	        if(j < image_w/2 ){
+					modify_pixel(result.tab, i * image_w + j , 128, 128, 128);
+    	        }else{
+					modify_pixel(result.tab, i * image_w + j , 128, 0, 255);
+					
+    	        }
+    	    }
+    	}
+    	
+    	return result;
+	}else if(i == 3){
+
+    	image result = create_image(default_w,default_h);
+    	int image_h = result.h;
+    	int image_w = result.w;
+    	for (int i = 0; i < image_h; i++) {
+    	    for (int j = 0; j < image_w; j++) {
+    	        if(j < image_w/2 ){
+					modify_pixel(result.tab, i * image_w + j , 128, 128, 128);
+    	        }else{
+					modify_pixel(result.tab, i * image_w + j , 128, 0, 255);
+					
+    	        }
+    	    }
+    	}
     	
     	return result;
 	}
 	else{
-		return create_test_image(1);
+		return create_test_image(0);
 	}
 }
 

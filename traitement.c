@@ -18,24 +18,23 @@ image traitement(image g){
 		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
 
 		}
-	}
+	} 
 
-	affiche_tab(g,tab);
+	//affiche_tab(g,tab);
 	int * borders = mark_border(g, tab, num_tache);
-	affiche_tab(g,borders);
+	//affiche_tab(g,borders);
 
 	image result = cpy_image(g);
 	
-
-
-	//TODO apply_borders(g, tab, option);
-
+	pixel couleur_bordure  = create_pixel(255, 255, 255);
+	apply_borders(&result, borders, couleur_bordure);
+	//affiche_image(result);
 	return result;
 }
 
 void affiche_tab(image g,int tab[]){
 	int x,y;
-	for(y=0;y< g.h ;y++){
+	for(y=0;y< g.h ;y++){ 
 		for(x=0;x< g.w;x++){
 			printf("|%2d",tab[y*g.w +x]);
 		}
@@ -95,5 +94,15 @@ int is_border(int tab[], int w, int h, int i){
 	applique la pixel de couleur color a toutes les bordures sur l'image dst
 */
 void apply_borders(image * dst, int* borders, pixel color){
-
+	for (int i = 0; i < dst->w * dst->h ; i++)
+	{
+		if (borders[i] == -1)
+		{	
+			//printf("border find at %i\n", i);
+			dst->tab[i*3]   = color.R;
+			dst->tab[i*3+1] = color.G;
+			dst->tab[i*3+2] = color.B;
+		}
+	}
+	
 }

@@ -5,6 +5,7 @@
 #define STRICT 1
 #define DIFF_MONO 15
 #define DIFF_TOT 45
+#define NB_IMG_TEST 4
 
 typedef unsigned char color;
 
@@ -29,6 +30,7 @@ struct tache{
 };
 
 pixel build_pixel(color *tab, int pos);
+pixel create_pixel(color R, color G, color B);
 void modify_pixel(color * tab,int pos, color R, color G, color B);
 void affiche_pixel(color * tab,int pos);
 image create_image(int w, int h);
