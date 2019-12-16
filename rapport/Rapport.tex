@@ -28,8 +28,10 @@ par extension, vous devez avoir sur votre machine les dépendances de GL4Dummies
 Un makefile est présent dans le répertoire de racine, pour compiler le programme, une simple
 commande "make" suffit à obtenir l'exécutable "exec".\\
 Enfin, lancer le programme exec pour faire appraître la fênetre d'affichage.\\
-Par défaut l'image affiché est l'image avant le traitement, 
-pour afficher le l'image après application du traitement, pressez la touche "r" de votre clavier.\\
+Par défaut l'image affiché est l'image avant le traitement, \\
+Pour afficher le l'image avant l'application du traitement, pressez la touche "v" de votre clavier.\\
+Pour afficher le l'image après l'application du traitement, pressez la touche "b" de votre clavier.\\
+Pour passer à l'image suivante, pressez la touche "n" de votre clavier.\\
 Pour terminer le programme, vous pouvez presser la touche "ECHAP", "q" ou la croix situé dans le coin supérieur droite.
 
 \section{Objectives et consigne du Projet}
@@ -79,8 +81,11 @@ Mais comme dans la consigne, il est dit qu'il faut utiliser une matrice de (XMAX
 \section{Explications sur les fonctions utilisées}
 \subsection{image.c}
 \textit{pixel build\_pixel(color \*tab, int pos)}\\
-retourne une structure pixel à partir des couleurs qui se situe 
+retourne une structure pixel à partir des couleurs qui se situent 
 en position "pos" du tableau de couleur donné en paramètre.\\
+\\
+\textit{create\_pixel(color R, color G, color B)}\\
+retourne une structure pixel à partir des couleurs données en paramètre.\\
 \\
 \textit{void modify\_pixel(color* tab,int pos, color R, color G, color B)}\\
 Comme son nom l'indique, il modifie les couleurs situées à la position "pos" du tableau avec les paramètres donnés.\\
@@ -112,8 +117,9 @@ de couleur proche. Il y a aussi 2 macro dédiés "DIFF\_TOT" et "DIFF\_MONO":
 Permet d'afficher l'image sur l'écran du terminale, le résultat est biensûr très moche, et devient 
 rapidement illisible pour de grande dimension, cependant, il a été très utile pour visualiser rapidement 
 l'image pendant la phase de developpement du projet, l'affiche via openGL n'intervient que très tardivement dans 
-notre projet.
-\\
+notre projet.\\
+\textit{void free\_image(image * src)}\\
+Fonction qui libère l'espace mémoire utilisé par l'image (plus précisement celui pointé par "tab").\\\\
 \subsection{propager.c}
 \textit{int propager(image g, int tab[], int i, int num\_tache, pixel p)}\\
 Dans ce fichier, il n'y a qu'une seule fonction, c'est la fonction de test pour identifier les différentes 
@@ -129,8 +135,23 @@ il faut lancer le test de couleur pour voir si les 2 pixels(trio de couleurs et 
 Si la comparaison s'avère bonne, la case "i" est marqué avec le numéro de tache donné en argument.
 Puis la fonction se propage récursivement dans les 4 cases en proximité (gauche, haut, droite et bas).
 \\
-\subsection{traitement.c}
+Supposons nous une image de 10x10, divisée par 2 taches de couleurs différentes, 
+après la boucle de traitement via propager, nous aurons le résultat suivant:
+\begin{lstlisting}
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+    | 1| 1| 1| 1| 1| 2| 2| 2| 2| 2
+\end{lstlisting}
+Les 2 taches ont bien été marqué par 2 numéro différentes.
 
+\subsection{traitement.c}
 \textit{void affiche\_tab(image g,int tab[])}\\
 Cette fonction a pour but d'afficher le tableau "tab" cité dans la section précedente, c'est pour des 
 besoin de visualisation lors du developpement qu'elle a été crée.
@@ -141,14 +162,70 @@ Comme son nom l'indique, la fonction initialise toutes les cases du tableau "tab
 dimensions du tableau voir même juste sa taille dans ce cas présent. Mais bon, c'est pas une fonction que 
 nous utilisons dans toutes les fonctions, elle a été crée car nous voulions segmenter au maximum les taches. \\
 Et en effet, la fonction a été utilisée au moins 2 fois, ce qui justifie amplement son utilité et d'éviter de copier-coller 2 boucle for identique.
-\\
-\textit{}\\
-\\
-\textit{}\\
-\\
-\textit{}\\
-\\
+\\\\
+\textit{int* mark\_border(image g, int tab[], int nb\_tache)}\\
+Cette fonction continue son travail sur propager qui auras produit un tableau d'entier remplie avec 
+les numéros de taches. Le but de cette fonction est de detecter les bordures entre les taches. 
+Le résultat produit est un tableau qui contient que "0" ou "-1", "0" pour une pixel quelconque et "-1" 
+pour indiquer qu'il s'agit d'une limite de tache.\\
+Pour cela rien de plus simple, il suffit d'iterer sur toutes les cases du tableau de tache, si la case traité 
+a une case en proximité qui a une numéro de tache différente d'elle, alors la case traîté est en bordure de la tache.\\ 
+Voilà une exemple de sortie
+\begin{lstlisting}
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+    | 0| 0| 0| 0|-1|-1| 0| 0| 0| 0
+\end{lstlisting}
+\textit{int is\_border(int tab[], int w, int h, int i)}\\
+Cette fonction permet à mark\_border de savoir si un pixel est en bordure de la tache en comparant son numéro de tâche 
+avec ses voisins de proximité.
+\\\\
+\textit{void apply\_borders(image * dst, int* borders, pixel color)}\\
+Cette permet d'appliquer le traitement de délimitation tant espéré sur une image src, en se basant sur 
+le tableau de bordure "borders" ainsi que la pixel de couleur "pi".
+\\\\
+\textit{image traitement(image g)}\\
+Revenons sur la première fonction de ce fichier, c'est la fonction principale de traitement, qui appeleras tous les fonctions précedentes 
+afin d'appliquer notre traitement. Biensûr, il ne modifie pas l'image d'origine mais crée une copie de cette image source, 
+l'image traité est retourné à l'utilisateur.\\
+Les étapes, une fois segmentées, sont très intuitif:\\
+\begin{itemize}
+    \item Trouver toutes les taches.
+    \item Trouver toutes les limites des taches.
+    \item Créer la copie de l'image source et appliquer le traitement sur cette image.
+    \item Retourner l'image traîté.    
+ \end{itemize}
 
+\subsection{window.c}
+Ce fichier a été copié depuis un des exemple de cours de M.Belhadj pour le cours de programmation graphique L2.\\
+Nous pouvons diviser les explications sur 3 parties distincts. \\
+\textit{static void init(void)}\\
+Fonction qui initialise les paramètre OpenGL, ici, nous avons juste besoin d'initier un écran d'affichage 
+et de mettre une couleur de fond de defaut.\\\\
+\textit{static void print\_image(image img)}\\
+\textit{static void draw(void)}\\
+Ces 2 fonctions sont intimement liées, elles permettent d'afficher l'image qui est pointé par le pointeur d'image global 
+"displayed\_image". Il n'y a rien d'extraodinaire, il suffit de boucler sur l'image, recupèrer le trio de couleur, et de les afficher sur le bon pixel de l'écran.\\ 
+\\
+\textit{static void keydown(int keycode)}\\
+Enfin, la fonction keydown permet de gérer les évenements quand l'utilisateur presse sur une touche.\\
+Pour nous, il s'agit simplement de modifier la cible qui est pointé par "displayed\_image", il y a 2 image qui sont déclaré en globale 
+dans ce fichier: "before\_image" et "after\_image".\\
 
+\section{Bugs et limite du programme}
+Le programme est très gourmande en mémoire, dependante du capacité de votre machine, il se peut 
+que la fênetre se ferme sur un seg fault, pour ma part, je peux aller jusqu'à une résolution de 400*400.\\
+A cause des derniers évenements, nous n'avons pas pu tester la dernière partie concernant l'affichage du traitement 
+sur une machine du bocal, en "théorie", il ne devrait pas poser de problème car les machines du bocal dispose de l'API GL4Dummies.\\
+Enfin, une des limite du programme est qu'il ne gère pas les lignes ou verticales de fine épaisseur, 
+le traitement que nous appliquons sur la tache se situe dans la bordure interne, ce qui fait que pour une épaisseur de 1 à 2 pixel, 
+la tache est entirement recouverte par le traitement. 
 
 \end{document}
