@@ -5,8 +5,6 @@
 #define STRICT 1
 #define DIFF_MONO 15
 #define DIFF_TOT 45
-#define NB_IMG_TEST 4
-
 typedef unsigned char color;
 
 typedef struct pixel pixel;
@@ -39,3 +37,4 @@ int compare_pixel(pixel pi, color * tab, int pos, int option);
 int compare_color(color * tab, int pos_a, int pos_b);
 void affiche_image(image img);
 image cpy_image(image src);
+void free_image(image * src);

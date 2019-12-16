@@ -19,7 +19,8 @@ static void quit(void);
 /*!\brief window's width and height by default, but actually never used because of overwriting in main*/
 static int _windowWidth = 800, _windowHeight = 600;
 static image before_image, after_image;
-static image displayed_image;
+static const int NB_IMG_TEST = 4;
+static image * displayed_image;
 static GLuint _screen = 0;
 static int num_image = 0;
 
@@ -28,8 +29,8 @@ static int num_image = 0;
  *  starts the main loop.
  */
 int main(int argc, char ** argv) {
-  before_image = create_test_image(num_image);
-  displayed_image = before_image;
+  before_image = create_test_image(num_image % NB_IMG_TEST);
+  displayed_image = &before_image;
   after_image = traitement(before_image);
   
   _windowWidth = before_image.w;
@@ -72,15 +73,19 @@ static void keydown(int keycode) {
   case 'q':
     exit(0);
   case 'v':
-    displayed_image = before_image;
+    displayed_image = &before_image;
     break;
   case 'b':
-    displayed_image = after_image;
+    displayed_image = &after_image;
     break;
   case 'n':
-    before_image = create_test_image(++num_image%NB_IMG_TEST);
+    num_image = (num_image+1) % NB_IMG_TEST;
+    printf("%d %d\n", num_image,NB_IMG_TEST);
+    displayed_image = &after_image;
+    free_image(&before_image);
+    before_image = create_test_image(num_image);
     after_image = traitement(before_image);
-    displayed_image = before_image;
+    displayed_image = &before_image;
     break;
   }
 }
@@ -107,7 +112,7 @@ static void print_image(image img){
 /*!\brief 
  */
 static void draw(void) {
-  print_image(displayed_image);
+  print_image(*displayed_image);
 
 }
 
