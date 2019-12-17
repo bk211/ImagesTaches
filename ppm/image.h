@@ -3,8 +3,8 @@
 #include <assert.h>
 
 #define STRICT 1
-#define DIFF_MONO 10
-#define DIFF_TOT 30
+#define DIFF_MONO 60
+#define DIFF_TOT 180
 typedef unsigned char color;
 
 typedef struct pixel pixel;

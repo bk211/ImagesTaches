@@ -11,27 +11,21 @@ my_image traitement(my_image g){
 	assert(tab);
 	init_tab(g,tab);
 	for(i=0; i< (g.w * g.h); i++){
-//	for(i=0; i< 10; i++){
-		//printf("Outside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
-		if(tab[i]==0){//il s'agit d'une nouvelle tache
-			num_tache +=1;
-			tab[i] = num_tache;
-			pixel pi = build_pixel(g.tab, i); 
-			printf("%d %d %d\n", pi.R, pi.G, pi.B);
-		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
-			propager2(g,tab,i,num_tache,pi);
-		}
+	//for(i=0; i< 20; i++){
+	//printf("i =%d\n",i );
+		pixel pi = build_pixel(g.tab, i); 
+		propager2(g,tab,i,&num_tache,pi);
 	} 
 
-	for (int i = 0; i < 10; i++)
+	/*for (int j = 0; j < 20; j++)
 	{
-		printf("%d, ",tab[i]);
-	}
+		printf("%d, ",tab[j]);
+	}*/
 	
 
 //	affiche_tab(g,tab); 
 	int * borders = mark_border(g, tab, num_tache);
-	affiche_tab(g,borders);
+	//affiche_tab(g,borders);
 	free(tab);
 	my_image result = cpy_image(g);
 	
@@ -85,6 +79,7 @@ int is_border(int tab[], int w, int h, int i){
 	if((i%w -1)>=0){//gauche
 	//	printf("g\n");
 		result |= (tab[i] != tab[i-1]);
+		
 	}
 	if((i-w)>=0){//haut
 	//	printf("h\n");
