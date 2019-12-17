@@ -16,11 +16,6 @@ my_image traitement(my_image g){
 		pixel pi = build_pixel(g.tab, i); 
 		propager2(g,tab,i,&num_tache,pi);
 	} 
-
-	/*for (int j = 0; j < 20; j++)
-	{
-		printf("%d, ",tab[j]);
-	}*/
 	
 
 //	affiche_tab(g,tab); 
@@ -28,7 +23,7 @@ my_image traitement(my_image g){
 	//affiche_tab(g,borders);
 	free(tab);
 	my_image result = cpy_image(g);
-	
+		
 	pixel couleur_bordure  = create_pixel(0, 0, 0);
 	apply_borders(&result, borders, couleur_bordure);
 	free(borders);

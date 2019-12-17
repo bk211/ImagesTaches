@@ -30,7 +30,7 @@ void propager(my_image g, int tab[], int i, int num_tache, pixel p){
 
 void propager2(my_image g, int tab[], int i, int * num_tache, pixel p){
 //	printf("In propager2 for tab[%d] = %d\n",i,tab[i]);
-	int diff_max = 45, diff_mono = 15; 
+	int diff_max = 30, diff_mono = 10; 
 
 	if(tab[i] == 0){//si la case est nouvelle
 //		printf("new tache at pos = %d\n", i);
