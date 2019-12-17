@@ -216,6 +216,7 @@ int compare_pixel(pixel pi, color * tab, int pos, int option){
 		dg = abs(pi.G - tab[pos*3+1]);
 		db = abs(pi.B - tab[pos*3+2]);
 		color dt = dr + dg + db; //difference totale;
+		//printf("%d %d %d\n", dr, dg, db);
 		return (dt < DIFF_TOT) && (dr < DIFF_MONO) && (dg < DIFF_MONO) && (db < DIFF_MONO);
 	}
 }

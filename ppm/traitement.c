@@ -5,36 +5,40 @@
 my_image traitement(my_image g){
 	//printf("in traitement\n"); 
 	int i;
-	int num_tache=1;
+	int num_tache=0;
 //	int tab [g.w * g.h];
 	int * tab = malloc(g.w * g.h * sizeof (int*));
 	assert(tab);
 	init_tab(g,tab);
 	for(i=0; i< (g.w * g.h); i++){
+//	for(i=0; i< 10; i++){
 		//printf("Outside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
-		if(tab[i]==0){
-			pixel pi = build_pixel(g.tab, i);
-			//printf("%d %d %d\n", pi.R, pi.G, pi.B);
+		if(tab[i]==0){//il s'agit d'une nouvelle tache
+			num_tache +=1;
+			tab[i] = num_tache;
+			pixel pi = build_pixel(g.tab, i); 
+			printf("%d %d %d\n", pi.R, pi.G, pi.B);
 		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
-			propager(g,tab,i,num_tache,pi);
-			num_tache++;
-		//	printf("Inside ::tab[%d]==%d  tache==%d\n", i,tab[i],num_tache);
-		}else{
-			pixel pi = build_pixel(g.tab, i);
-			int current_num = tab[i];
-			propager(g,tab,i,current_num,pi);
+			propager2(g,tab,i,num_tache,pi);
 		}
 	} 
 
-//	affiche_tab(g,tab);
+	for (int i = 0; i < 10; i++)
+	{
+		printf("%d, ",tab[i]);
+	}
+	
+
+//	affiche_tab(g,tab); 
 	int * borders = mark_border(g, tab, num_tache);
-//	affiche_tab(g,borders);
+	affiche_tab(g,borders);
 	free(tab);
 	my_image result = cpy_image(g);
 	
 	pixel couleur_bordure  = create_pixel(0, 0, 0);
 	apply_borders(&result, borders, couleur_bordure);
 	free(borders);
+	//affiche_image(result);
 
 	return result;
 }
